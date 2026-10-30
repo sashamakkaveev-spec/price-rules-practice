@@ -18,7 +18,7 @@ public class PriceCalculatorTests
     }
     
     [Test]
-    public void Calculate_MinimumThenDiscount_Returns810()
+    public void Calculate_MinimumThenDiscount_Returns900()
     {
         IPriceRule[] rules =
         [
