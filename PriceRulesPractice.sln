@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceRulesPractice", "PriceRulesPractice\PriceRulesPractice.csproj", "{29761695-3157-4976-96D5-272B78E20408}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceRulesPractice.Tests", "PriceRulesPractice.Tests\PriceRulesPractice.Tests.csproj", "{82FCE6FF-1BCE-4A5D-A725-9A4D131A18EE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{29761695-3157-4976-96D5-272B78E20408}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29761695-3157-4976-96D5-272B78E20408}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29761695-3157-4976-96D5-272B78E20408}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29761695-3157-4976-96D5-272B78E20408}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82FCE6FF-1BCE-4A5D-A725-9A4D131A18EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82FCE6FF-1BCE-4A5D-A725-9A4D131A18EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82FCE6FF-1BCE-4A5D-A725-9A4D131A18EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82FCE6FF-1BCE-4A5D-A725-9A4D131A18EE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
