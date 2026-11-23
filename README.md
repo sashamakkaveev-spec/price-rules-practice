@@ -85,3 +85,31 @@ dotnet test PriceRulesPractice.sln
 
 SQL-скрипты выполняются отдельно от консольного приложения C#.
 Приложение пока не подключается к базе данных.
+
+## HTTP API — ASP.NET Core
+
+Проект `PriceRulesPractice.Api` предоставляет два GET-запроса:
+
+| Запрос | Результат |
+|---|---|
+| `/products` | Список товаров |
+| `/products/{id}` | Товар по идентификатору или 404 |
+
+### Запуск
+
+Из корня репозитория:
+
+```bash
+dotnet run --project PriceRulesPractice.Api/PriceRulesPractice.Api.csproj --no-launch-profile --urls http://localhost:5080
+```
+
+Примеры запросов:
+
+```bash
+curl -i http://localhost:5080/products
+curl -i http://localhost:5080/products/1
+curl -i http://localhost:5080/products/999
+```
+
+Ответы возвращаются в формате JSON.
+Товары заданы в памяти приложения. Подключение к PostgreSQL пока не реализовано.
