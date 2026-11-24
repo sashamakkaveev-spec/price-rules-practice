@@ -23,6 +23,47 @@ app.MapGet("/products/{id:int}", (int id) =>
     return Results.Ok(product);
 });
 
-app.MapGet("/products", () => Results.Ok(products));
+app.MapGet("/products", (decimal? minPrice, decimal? maxPrice) =>
+{
+    if (minPrice < 0m)
+    {
+        return Results.BadRequest(new
+        {
+            message = "Minimum price can't be negative"
+        });
+    }
+
+    if (maxPrice < 0m)
+    {
+        return Results.BadRequest(new
+        {
+            message = "Maximum price can't be negative"
+        });
+    }
+
+    if (minPrice > maxPrice)
+    {
+        return Results.BadRequest(new
+        {
+            message = "Minimum price can't be bigger than maximum price"
+        });
+    }
+
+    IEnumerable<Product> filteredProducts = products;
+
+    if (minPrice is not null)
+    {
+        filteredProducts = filteredProducts
+            .Where(p => p.Price >= minPrice.Value);
+    }
+
+    if (maxPrice is not null)
+    {
+        filteredProducts = filteredProducts
+            .Where(p => p.Price <= maxPrice.Value);
+    }
+    
+    return Results.Ok(filteredProducts.ToList());
+});
     
 app.Run();
