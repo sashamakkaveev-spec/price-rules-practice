@@ -7,6 +7,8 @@ var products = new List<Product>
     new Product(2, "Хлеб", 60m)
 };
 
+var productFilter = new ProductFilter();
+
 app.MapGet("/", () => "Hello World!");
 
 app.MapGet("/products/{id:int}", (int id) =>
@@ -25,45 +27,24 @@ app.MapGet("/products/{id:int}", (int id) =>
 
 app.MapGet("/products", (decimal? minPrice, decimal? maxPrice) =>
 {
-    if (minPrice < 0m)
+    try
+    {
+        var filteredProducts = productFilter.Filter(
+            products,
+            minPrice,
+            maxPrice
+        );
+
+        return Results.Ok(filteredProducts);
+    }
+    catch (ArgumentException exception)
+        when (exception.ParamName is nameof(minPrice) or nameof(maxPrice))
     {
         return Results.BadRequest(new
         {
-            message = "Minimum price can't be negative"
+            message = exception.Message
         });
     }
-
-    if (maxPrice < 0m)
-    {
-        return Results.BadRequest(new
-        {
-            message = "Maximum price can't be negative"
-        });
-    }
-
-    if (minPrice > maxPrice)
-    {
-        return Results.BadRequest(new
-        {
-            message = "Minimum price can't be bigger than maximum price"
-        });
-    }
-
-    IEnumerable<Product> filteredProducts = products;
-
-    if (minPrice is not null)
-    {
-        filteredProducts = filteredProducts
-            .Where(p => p.Price >= minPrice.Value);
-    }
-
-    if (maxPrice is not null)
-    {
-        filteredProducts = filteredProducts
-            .Where(p => p.Price <= maxPrice.Value);
-    }
-    
-    return Results.Ok(filteredProducts.ToList());
 });
     
 app.Run();
